@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#0b1426" />
+    <title>Chaldea Party Lab</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div class="brand">
+          <span class="brand-mark">✦</span>
+          <div><strong>CHALDEA</strong><small>PARTY LAB</small></div>
+        </div>
+        <div class="side-label">WORKSPACE</div>
+        <a class="nav-item active" href="#builder"
+          ><span>◇</span> Party builder</a
+        >
+        <a class="nav-item" href="#collection"><span>▦</span> My Chaldea</a>
+        <div class="sidebar-bottom">
+          <span class="dot"></span><span id="data-status">Loading catalog…</span
+          ><small>Atlas Academy game data</small>
+        </div>
+      </aside>
+
+      <main>
+        <header class="topbar">
+          <div class="breadcrumbs">WORKSPACE <span>/</span> PARTY BUILDER</div>
+          <div class="top-actions">
+            <label class="region-label" for="region">Region</label
+            ><select id="region">
+              <option value="NA">NA</option>
+              <option value="JP">JP</option></select
+            ><span class="avatar">M</span>
+          </div>
+        </header>
+
+        <section class="hero" id="builder">
+          <div class="eyebrow">
+            <span class="sparkle">✧</span> YOUR STRATEGY STARTS HERE
+          </div>
+          <h1>Build a better <em>party.</em></h1>
+          <p>
+            Choose the Servants you want to build around. We’ll find teammates
+            and Craft Essences from your collection that work together.
+          </p>
+          <div class="hero-glow"></div>
+          <div class="hero-symbol">✦</div>
+        </section>
+
+        <div class="content-grid">
+          <div class="main-column">
+            <section class="panel setup-panel">
+              <div class="panel-heading">
+                <div>
+                  <span class="step">01</span>
+                  <h2>Set your strategy</h2>
+                </div>
+                <span class="subtle">Tell us what you’re building for</span>
+              </div>
+              <div class="field-grid">
+                <label
+                  >Battle plan<select id="goal">
+                    <option value="balanced">Balanced team</option>
+                    <option value="farming">3-turn farming</option>
+                    <option value="boss">Boss fight</option>
+                    <option value="survival">Survival</option>
+                  </select></label
+                >
+                <label
+                  >Enemy class<select id="enemy">
+                    <option value="any">Any / mixed</option>
+                    <option value="Saber">Saber</option>
+                    <option value="Archer">Archer</option>
+                    <option value="Lancer">Lancer</option>
+                    <option value="Rider">Rider</option>
+                    <option value="Caster">Caster</option>
+                    <option value="Assassin">Assassin</option>
+                    <option value="Berserker">Berserker</option>
+                  </select></label
+                >
+              </div>
+              <div class="switch-row">
+                <div>
+                  <strong>Friend support slot</strong>
+                  <p>Allow one unowned Servant in the frontline.</p>
+                </div>
+                <label class="switch"
+                  ><input id="friend" type="checkbox" /><span></span
+                ></label>
+              </div>
+            </section>
+
+            <section class="panel" id="collection">
+              <div class="panel-heading">
+                <div>
+                  <span class="step">02</span>
+                  <h2>Choose your core</h2>
+                </div>
+                <span id="core-count" class="count-pill">0 / 3 selected</span>
+              </div>
+              <p class="section-intro">
+                Lock up to three Servants into every suggestion. Mark who you
+                own below; only owned Servants can fill the other slots.
+              </p>
+              <div id="core-tray" class="core-tray"></div>
+              <div class="collection-head">
+                <div>
+                  <h3>Servant collection</h3>
+                  <span id="servant-count">0 owned</span>
+                </div>
+                <div class="search-wrap">
+                  <span>⌕</span
+                  ><input
+                    id="servant-search"
+                    type="search"
+                    placeholder="Search Servants…"
+                    autocomplete="off"
+                  />
+                </div>
+              </div>
+              <div class="filter-row">
+                <button class="filter active" data-filter="all">All</button
+                ><button class="filter" data-filter="owned">Owned</button
+                ><button class="filter" data-filter="unowned">Unowned</button>
+              </div>
+              <div id="servant-list" class="catalog-list"></div>
+              <div class="catalog-footer">
+                <span id="servant-page-status"></span
+                ><button id="servant-more" class="text-button">
+                  Show more ↓
+                </button>
+              </div>
+            </section>
+
+            <section class="panel ce-panel">
+              <div class="panel-heading">
+                <div>
+                  <span class="step">03</span>
+                  <h2>Craft Essences</h2>
+                </div>
+                <span id="ce-count" class="count-pill">0 owned</span>
+              </div>
+              <p class="section-intro">
+                Add the CEs you own. Suggestions assign each copy once and
+                respect your party cost limit.
+              </p>
+              <div class="ce-controls">
+                <div class="search-wrap">
+                  <span>⌕</span
+                  ><input
+                    id="ce-search"
+                    type="search"
+                    placeholder="Search Craft Essences…"
+                    autocomplete="off"
+                  />
+                </div>
+                <label class="cost-label"
+                  >Max party cost
+                  <input id="cost" type="number" min="0" max="200" value="112"
+                /></label>
+              </div>
+              <div id="ce-list" class="catalog-list compact"></div>
+              <div class="catalog-footer">
+                <span id="ce-page-status"></span
+                ><button id="ce-more" class="text-button">Show more ↓</button>
+              </div>
+            </section>
+          </div>
+
+          <aside class="results-column">
+            <div class="results-sticky">
+              <section class="panel result-panel">
+                <div class="result-heading">
+                  <div>
+                    <span class="result-icon">✦</span
+                    ><span class="result-kicker">PARTY SUGGESTIONS</span>
+                  </div>
+                  <span class="live-dot">● LIVE</span>
+                </div>
+                <h2>Your next lineup<br />starts here.</h2>
+                <p>
+                  We’ll weigh card synergy, support, survival, enemy class, CEs,
+                  and cost.
+                </p>
+                <button id="generate" class="primary-button">
+                  Generate parties <span>↗</span>
+                </button>
+                <div class="rule"></div>
+                <div class="result-stat">
+                  <span>Owned Servants</span
+                  ><strong id="stat-servants">0</strong>
+                </div>
+                <div class="result-stat">
+                  <span>Owned CE copies</span><strong id="stat-ces">0</strong>
+                </div>
+                <div class="result-stat">
+                  <span>Core picks</span><strong id="stat-core">0 / 3</strong>
+                </div>
+              </section>
+              <div class="helper-note">
+                ✧
+                <span
+                  >Your collection is saved in this browser. Switch regions
+                  without losing your picks.</span
+                >
+              </div>
+            </div>
+          </aside>
+        </div>
+        <section id="suggestions" class="suggestions"></section>
+        <footer>
+          Unofficial fan tool · Game data by
+          <a href="https://api.atlasacademy.io" target="_blank" rel="noreferrer"
+            >Atlas Academy</a
+          >
+          · Synergy scores are planning heuristics, not damage simulations.
+        </footer>
+      </main>
+    </div>
+    <script type="module" src="/app.js"></script>
+  </body>
+</html>
